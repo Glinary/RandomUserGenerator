@@ -11,12 +11,15 @@ generateButton.addEventListener("click", async (e) => {
     const nationality = formData.get("nationality")
     const amount = +formData.get("number");
     const url = (`https://randomuser.me/api/?gender=${gender}&nat=${nationality}`)
-    
-    for (let i = 0; i < amount; i++) {
-        const rawUserData = await fetch(url);
-        const parsedUserData = await rawUserData.json();
-        console.log(parsedUserData);
-        writeData(parsedUserData);
+    try {
+        for (let i = 0; i < amount; i++) {
+            const rawUserData = await fetch(url);
+            const parsedUserData = await rawUserData.json();
+            console.log(parsedUserData);
+            writeData(parsedUserData);
+        }
+    } catch(err) {
+        console.log(err);
     }
     
 })
